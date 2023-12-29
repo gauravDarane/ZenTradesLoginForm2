@@ -1,0 +1,131 @@
+<html>
+
+<head>
+  <title>Login Form</title>
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ccc;
+      height: 100%;
+    }
+
+    .form-container {
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+      background-color: #141414;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+      margin: 50px auto;
+      max-width: 400px;
+    }
+
+    .input-wrapper {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="submit"] {
+      width: 300px;
+      height: 40px;
+      padding: 15px;
+      border-radius: 5px;
+      margin: -6px 0px -6px 0px;
+      border: 2px solid #ccc;
+      box-sizing: border-box;
+      font-size: 17px;
+    }
+
+
+
+    input[type="submit"] {
+      background-color: #62bd2a;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 7px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: green;
+    }
+
+    .logo {
+      width: 250px;
+      height: auto;
+      margin-bottom: 40px;
+      margin-top: 35px;
+    }
+
+    .forgot-password {
+      font-size: 14px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .forgot-password:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="form-container">
+    <img src="your_logo.png" alt="Logo" class="logo">
+    <form action="/login" method="post" onsubmit="return validateForm()">
+      <div class="input-wrapper">
+        <input type="text" id="username" name="username" placeholder="Username">
+      </div>
+      <div class="input-wrapper">
+        <input type="password" id="password" name="password" placeholder="Password">
+      </div>
+      <div class="input-wrapper">
+        <input type="submit" value="Login">
+      </div>
+    </form>
+    <a href="mailto:support@smartserv.io?subject=Password Reset Request" class="forgot-password">Forgot your password?</a>
+  </div>
+
+  <script>
+    function validateForm() {
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+
+      if (password == "SmartServTest@123") {
+        window.location.href = "dashboard.html";
+        alert("Redirecting..");
+      }
+      
+      // Validation for username (email format)
+      var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      if (!emailRegex.test(username)) {
+        alert("Please enter a valid email address!");
+        return false;
+      }
+
+      // Validation for password (uppercase letter, number, @ symbol, and no special characters)
+      var passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?!.*[^a-zA-Z\d@]).{8,}$/;
+      if (!passwordRegex.test(password)) {
+        alert("Password must contain at least 1 uppercase letter, 1 number, and only @ as a special character.");
+        return false;
+      }
+
+
+      return true;
+    }
+  </script>
+
+</body>
+
+</html>
